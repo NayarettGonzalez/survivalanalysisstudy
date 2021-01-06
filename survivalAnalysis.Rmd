@@ -1,0 +1,6 @@
+---
+title: "survivalAnalysis"
+author: "Nayarett González"
+date: "1/6/2021"
+output: html_document
+---
