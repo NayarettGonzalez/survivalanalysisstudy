@@ -1,6 +1,100 @@
 ---
-title: "survivalAnalysis"
-author: "Nayarett González"
+title: "Análisis de supervivencia"
 date: "1/6/2021"
 output: html_document
 ---
+
+# Analisis de Supervivencia
+
+Es un popular enfoque de análisis de datos para cierta clase de datos epidemiológicos y otros tipos de datos
+
+#Qué es el análisis de supervivencia
+
+Generalmente, es una colección de procedimientos estadísticos para el análisis de datos , en donde la variable de interés de salida es:
+  - el tiempo hasta que un evento ocurre 
+  
+- Tiempo:
+  - años
+  - meses
+  - semanas
+  - días
+  
+  Desde el comienzo del seguimiento de un individuo hasta que un evento ocurre; alternativamente, el tiempo puede referir a la edad de un individuo cuando un evento ocurre.
+
+- Evento:
+  - muerte
+  - incidencia de la enfermedad
+  - recaída de la remisión
+  - recuperación (ex. regreso al trabajo)
+  - una experiencia designada que puede sucederle a un individuo
+  
+  Aunque, más de un evento puede ser considerado en el mismo análisis, asumiremos que solo un evento es designado de interés.
+  
+  Cuando más de un evento es considerado (ex. muerte por múltiples causas), el problema estadístico puede ser caracterizado como un problema de evento recurrente o de riesgo de competencia.
+  
+  variable tiempo = tiempo de supervivencia, porque esta entrega el tiempo que un individuo ha sobrevivido en algún período de seguimiento.
+
+  tiempo de supervivencia puede ser:
+  
+  - tiempo para regresar al trabajo después de un electivo procedimiento quirúrgico, en el caso de falla es un evento positivo.
+
+  evento = falla
+  
+
+También nos referimos típicamente al evento como a una falla, porque el evento de interés usualmente es la muerte, incidencia de la enfermedad o cualquier otra experiencia negativa del individuo.
+
+  
+#Ejemplos de análisis de supervivencia
+
+En estos problemas la variable resultante es el tiempo hasta que un evento sucede.
+  
+  Problema - Variable de salida - Evento
+  
+ - Pacientes con leucemia; tiempo, en semanas, de remisión. Evento = Salir de remisión.
+ 
+ - Cohorte libre de enfermedad; tiempo, en años, hasta que que una persona desarrolla una enfermedad cardiaca. Observación de un grupo, durante muchos años, para ver quién desarrolla una enfermedad cardiaca. Evento = desarrollar una enfermedad cardiaca.
+ 
+ - Envejecimiento de la población; tiempo, en año hasta la muerte. Seguimiento de una población mayor de 60 años, por un período de 13 años de seguimiento, para ver qué sujetos permanecen vivos. Evento =  muerte.
+ 
+ - Libertad condicional; tiempo hasta que es vuelto a arrestar - reincidencia. Seguimiento por semanas de recién liberados con libertad condicional para ver si vuelven a reincidir. (Estudio de reincidencia). Evento = reincidencia. Estudio más sociológico que médico.
+ 
+ - Transplante de corazón; tiempo hasta la muerte. Traza cuánto tiempo sobrevive un paciente después de ser trasplantados. Evento =  muerte
+ 
+
+# Censura de los datos
+
+- La mayoría de los análisis de sobrevivencia deben considerar un problema analítico clave llamado "censura". 
+ 
+ La censura ocurre cuando tenemos alguna información acerca del tiempo de supervivencia de un individuo, pero no conocemos el tiempo de supervivencia exactamente.
+ 
+ 
+#Por qué censurar - principales razones
+
+- Los estudios terminan y no hubo un evento; ej. se termina el estudio antes de que se termine el seguimiento de un individuo hasta que el evento se produzca
+- pérdida de seguimiento de una persona durante el estudio
+- retiro de una persona del estudio, ya sea por muerte (siendo este no un evento de interés) o alguna otra razón como reacción adversa a un medicamento u otro riesgo.
+
+
+PA - Es seguida desde el comienzo del estudio hasta que conseguir el evento en la cuarta semana; su tiempo de supervivencia es de 4 semanas y no es censurada.
+
+PB - También es observada desde el comienzo del estudio. Es seguida hasta el término del estudio sin conseguir el evento. El tiempo de supervivencia es censurado; sólo podemos decir que éste, al menos, es de X semanas.
+
+PC - Entra al estudio entre la segunda y tercera semana. Se sigue hasta que se retira en la sexta semana; el tiempo de supervivencia es censurado después de 3,5  semanas.
+
+PD - Una persona entra en la semana número 4 y seguida por el resto del tiempo de estudio sin conseguir el evento; el tiempo de supervivencia censurado es X - 4 semanas
+
+PE - Un individuo entra al estudio en la tercera semana y seguido hasta la novena, donde se pierde su seguimiento; su tiempo censurado es de seis semanas.
+
+PF - La persona entra en la octava semana al estudio y es seguida hasta conseguir el evento en la semana 12,5. No hay censura y el tiempo se supervivencia es de 4,5 semanas
+
+```{r echo=FALSE}
+individuo <- c("A","B","C","D","E","F")
+tiempo.supervivencia <- c(4,15,3.5,7,5,4.5)
+fallido <- c(1,0,0,0,0,1)
+survival.table <- data.frame(individuo, tiempo.supervivencia, fallido)
+
+survival.table
+```
+
+
+ 
