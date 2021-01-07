@@ -10,8 +10,8 @@ Es un popular enfoque de análisis de datos para cierta clase de datos epidemiol
 
 #Qué es el análisis de supervivencia
 
-Generalmente, es una colección de procedimientos estadísticos para el análisis de datos , en donde la variable de interés de salida es:
-  - el tiempo hasta que un evento ocurre 
+Generalmente, es una colección de procedimientos estadísticos para el análisis de datos, en donde la variable de interés de salida es:
+  - el tiempo hasta que ocurre un evento
   
 - Tiempo:
   - años
@@ -21,7 +21,7 @@ Generalmente, es una colección de procedimientos estadísticos para el análisi
   
   Desde el comienzo del seguimiento de un individuo hasta que un evento ocurre; alternativamente, el tiempo puede referir a la edad de un individuo cuando un evento ocurre.
 
-- Evento:
+- Eventos:
   - muerte
   - incidencia de la enfermedad
   - recaída de la remisión
